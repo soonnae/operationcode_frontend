@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import DOMPurify from 'dompurify';
 import styles from './question.css';
 
 const Question = ({ q, a }) => (
@@ -7,7 +8,7 @@ const Question = ({ q, a }) => (
     <input className={styles.accordionSingleHidden} type="checkbox" id={q} />
     <label className={styles.accordionSingleQuestion} htmlFor={q}> {q}</label>
     { // eslint-disable-next-line
-      <p className={styles.accordionSingleAnswer} dangerouslySetInnerHTML={{ __html: a }} />
+      <p className={styles.accordionSingleAnswer} dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(a) }} />
     }
   </div>
 );
